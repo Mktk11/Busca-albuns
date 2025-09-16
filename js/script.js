@@ -1,6 +1,6 @@
 const albumCover = document.getElementById('albumCover');
 const buscaArtista = document.getElementById('buscaArtistas');
-const respostas = document.getElementById('respostas');
+/*const respostas = document.getElementById('respostas');*/
 
 const fetchApi = async (album) => {
   const resposta = await fetch(
@@ -16,9 +16,6 @@ const fetchTracks = async (albumId) => {
   return resposta.json();
 };
 
-respostas.addEventListener('input',async () =>{
-  
-})
 const cardAlbum = async (album) => {
   const tracks = await fetchTracks(album.id);
 
@@ -29,7 +26,7 @@ const cardAlbum = async (album) => {
     </div>
     <div class="faixas">
       ${tracks.data
-        .map((faixa) => `<input type="text" id="respostas" class="faixa" value="">`)
+        .map((faixa) => `<input type="text" class="faixa" value="${faixa.title}">`)
         .join("")}
     </div>
   `;
@@ -57,5 +54,7 @@ buscaArtista.addEventListener('input', async () => {
     albumCover.innerHTML = `<div id="mensagemerro"><p>Erro ao buscar artista</p></div>`;
   }
 });
+
+
 
 
